@@ -187,6 +187,7 @@ public class MemberController {
                 // log.info("개인정보 => {}", obj);
                 model.addAttribute("mAddList", mAddList);
             }
+
             return "/member/mypage";
         } catch (Exception e) {
             e.printStackTrace();
@@ -208,6 +209,36 @@ public class MemberController {
             model.addAttribute("user", user);
 
             return "redirect:/mypage.do";
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "home";
+        }
+    }
+
+    @PostMapping(value = "/withdraw.do")
+    public String withdrawPOST(
+        Model model, 
+        @RequestParam(name="mpw") String mpw,
+        @AuthenticationPrincipal MemberUser user
+    ){
+        try {
+            // log.info("휴대폰번호 => {}", mphone);
+            Member member = mRepository.findByMid(user.getUsername());
+
+            BCryptPasswordEncoder bcpe = new BCryptPasswordEncoder();
+            if(bcpe.matches(mpw, member.getMpw())){
+                member.setMemail(null);
+                member.setMname(null);
+                member.setMphone(null);
+                member.setMpw(null);
+                member.setMregdate(null);
+
+                mRepository.save(member);
+                
+            }
+            // 로그아웃을 시켜야하는데용
+            
+            return "redirect:/home.do";
         } catch (Exception e) {
             e.printStackTrace();
             return "home";

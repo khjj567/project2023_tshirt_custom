@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <th:block th:fragment="mypage7Fragment">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.5/axios.min.js"></script>
+	
+        <script th:inline="javascript">
+            function withdrawCheck(){
+
+            const mpw = document.getElementById("mpw");
+            const mid = document.getElementById("mid");
+
+			if(mpw.value.length <= 0){
+                alert('비밀번호를 입력해주세요');
+                mpw.focus();
+                return false;
+            }
+
+                document.getElementById('form').submit();
+            }
+        </script>
+        <div class="my_title">
+            회원탈퇴
+        </div>
+        <form th:action="@{/member/withdraw.do}" method="post" id="form"  >
+            <p class="p_conts_one">
+                <label for="mpw"><b>비밀번호:</b></label>
+                <input type="text" id="mpw" name="mpw">
+                <input type="hidden" id="mid" name="mpw" th:value="${user.username}">
+            </p>
+            <div>
+                <input id="mypage_btn" style="border: solid 1px #000000;" type="button" value="탈퇴하기" onclick="withdrawCheck()"/>
+            </div>
+        </form>
+    </th:block>
+</html>
