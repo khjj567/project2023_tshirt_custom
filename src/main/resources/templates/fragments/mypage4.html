@@ -4,7 +4,9 @@
         <div class="my_title">
             문의내역
         </div>
-        <a th:href="@{/fqa/ask.do}"><button>질문등록하기</button></a>
+        <div class="mypage_button" style="float: right;">
+            <a id="mypage_btn" th:href="@{/fqa/ask.do}">질문등록하기</a>
+        </div>
         <table class="responstable">
             <thead>
                 <th>#</th>

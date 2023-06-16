@@ -2,13 +2,35 @@
 <html>
 
 <style>
-    
+    #mypage_btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: solid 2px #000000;
+        font-size: 10px;
+        background-color: rgba(217, 217, 217, 1);
+        width: 100%;
+        height: 100%;
+        border-radius: 30px;
+        padding: 5px 15px 5px 15px;
+        margin-left: 50%;
+        font-family: "NanumSquare";
+    }
+
+    #mypage_btn:hover {
+        border: solid 2px rgba(217, 217, 217, 1);
+        color: rgb(0, 0, 0);
+        background-color: pink;
+    }
+
 </style>
     <th:block th:fragment="mypage3Fragment">
         <div class="my_title">
             주문목록
         </div>
-        <a th:href="@{/product.do}"><button>옷보러가기</button></a>
+        <div class="mypage_button" style="float: right;">
+            <a id="mypage_btn" th:href="@{/product.do}">옷보러가기</a>
+        </div>
         <table class="responstable">
             <thead>
                 <th>주문번호</th>
@@ -25,7 +47,7 @@
             <tbody>
                 <tr th:each="obj : ${obj3}">
                     <td th:text="${obj.ono}"></td><!-- 주문번호ono -->
-                    <td th:text="${obj.tname}"></td><!-- 제품이름tshirt.tname -->
+                    <td style="text-align: left;" th:text="${obj.tname}"></td><!-- 제품이름tshirt.tname -->
                     <td th:text="${obj.tcolorname}"></td><!-- 색상tcolorno -->
                     <td th:text="${obj.tssize}"></td><!-- 사이즈tsno -->
                     <td th:text="${obj.ocnt}"></td><!-- 수량ocnt -->
@@ -44,8 +66,11 @@
                         </script>
                     </td>
                     <td>
-                        <a th:href="@{/product/order1.do(ono=${obj.ono})}"><button>주문</button></a>
+                        <div class="mypage_button">
+                            <a id="mypage_btn" th:href="@{/product/order1.do(ono=${obj.ono})}">주문</a>
+                        </div>
                     </td>
+                    
                 </tr>
             </tbody>
         </table>

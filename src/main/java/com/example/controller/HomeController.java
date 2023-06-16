@@ -115,7 +115,7 @@ public class HomeController {
             else{
                 return "redirect:/join.do";
             }
-            return "redirect:/join.do";
+            return "redirect:/login.do";
         }
         catch(Exception e){
             e.printStackTrace();

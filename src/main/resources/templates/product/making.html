@@ -12,6 +12,24 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/js/lightbox.min.js"></script>
 
 <style>
+    #mypage_btn{
+		border: solid 2px #000000;
+		font-size: 16px;
+		background-color: rgba(217, 217, 217, 1);
+		width: auto;
+		height: auto;
+		border-radius: 30px;
+		padding: 5px 15px 5px 15px;
+		margin: 10px ;
+		font-family: "NanumSquare";
+		float: right;
+	}	
+	#mypage_btn:hover{
+		border: solid 2px rgba(217, 217, 217, 1);
+		color: rgb(0, 0, 0);
+		background-color: pink;
+	}
+    
     /* image_p : id일때만 draggable 돼 */
 #image_p2{
     float: left;
@@ -220,10 +238,10 @@ function fileCheck(event) {
                         <select th:object="${tsdto}" th:field="${tsdto.selectsize}"> 
                             <option th:each="tmp : ${tsdto.list}" th:value="${tmp.tssize}" th:text="${tmp.tssize}" >종류</option>
                         </select>
-                        <div style="margin: 20px;">
-                            <input type="submit" class="select_btn2" value="주문하기" onclick="fileCheck(event);">
-                            </input>
+                        <div class="mypage_button"><!-- <div style="margin: 20px;"> -->
+                            <input id="mypage_btn" type="submit" value="주문하기" onclick="fileCheck(event);" />
                         </div>
+                        <!-- </div> -->
                     </form>
                 </div> 
                 <!-- 전체 사진 출력 -->

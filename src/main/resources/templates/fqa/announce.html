@@ -6,45 +6,33 @@
 <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css"rel="stylesheet">
 
 <style>
-    /* image_p : id일때만 draggable 돼 */
-#image_p2{
-    float: left;
-    width: 100%;
-    height: auto;
-    background-color: rgba(217, 217, 217, 1);
-}
-/* draggable */
-.draggable { 
-    width: auto; 
-    height: auto; 
-    float: left; 
-}
-.timage{
-    float: left;
-    width: 100%;
-    height: auto;
-    margin: auto 0px; 
-    position: relative;
-    object-fit: contain;
-    /* background-color: rgba(217, 217, 217, 1); */
-}
-.resizable {
-    width: auto;
-    height: auto;
-    /* border-radius: 0.75rem;
-    padding: 20px;
-    margin: 1rem; */
-    background-color: #29e;
-    color: white;
-    font-size: 20px;
-    font-family: sans-serif;
-    overflow: hidden;
+#mypage_btn{
+		border: solid 1px #000000;
+		font-size: 16px;
+		background-color: rgba(217, 217, 217, 1);
+		width: auto;
+		height: auto;
+		border-radius: 30px;
+		padding: 5px 15px 5px 15px;
+		margin: 5px;
+		font-family: "NanumSquare";
+		
+	}	
+	#mypage_btn:hover{
+		border: solid 1px rgba(217, 217, 217, 1);
+		color: rgb(0, 0, 0);
+		background-color: pink;
+	}
 
-    touch-action: none;
-
-    /* This makes things *much* easier */
-    box-sizing: border-box;
-}
+	.ti_ask{
+		margin: 7px;
+	}
+	input[type=text]{
+		border: solid 1px black;
+		height: 25px;
+		border-radius: 5px;
+		text-align: left ;
+	}
 </style>
 
 <body>
@@ -57,16 +45,17 @@
                 <div class="mid_title">
                     공지등록
                 </div>
-                <a th:href="@{/fqa.do?menu=1}"><button>공지사항</button></a>
+				<div class="mypage_button" style="float: right;">
+					<a id="mypage_btn" th:href="@{/fqa.do?menu=1}">공지사항</a>
+				</div>
                 <!-- 좌측 프린팅사이드 이미지 -->
                 <form th:action="@{/fqa/announceone.do}" method="post" id="form">
 					<div class="col-sm">
-						<div class="form-floating mb-2">
-                            <label for="title" class="form-label">제목</label>
+						<div class="ti_ask">
+                            <label for="title" class="label_cont_ti">제목 : </label>
 							<input type="text" name="hantitle" id="title" class="form-control" autofocus required /> 
-                            
 						</div>
-						<div >
+						<div class="ti_ask" style="margin-left: 30px;">
 							<!-- Create the editor container -->
 							<div id="editor" style="height: 300px;">
                                 <!-- <input type="text" name="haskcontent" id="content"/> -->
@@ -75,11 +64,11 @@
 						<div class="form-floating mb-2">		
 							<input type="hidden" id="writer" name="mid" th:value="관리자" class="form-control" required />  
 						</div>
-                        <div>
+                        <!-- <div>
                             게시글 작성시 주의사항
-                        </div>
-						<div>
-							<input type="button" value="글쓰기" class="btn btn-primary"onclick="getEditorContent()"/>
+                        </div> -->
+						<div class="mypage_button">
+							<input id="mypage_btn" type="button" value="글쓰기" onclick="getEditorContent()"/>
 						</div>
 					</div>
                     <textarea style="display:none;" name="hancontent" id="content"></textarea>

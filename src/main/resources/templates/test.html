@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <title>CSS</title>
+    <style>
+      body {
+        box-sizing: border-box;
+        font-family: Consolas, monospace;
+      }
+      .jb-table {
+        display: table;
+        width: 100%;
+        height: 280px;
+        border: 1px solid #444444;
+      }
+      .jb-table-row {
+        display: table-row;
+      }
+      .jb-table-cell {
+        display: table-cell;
+        vertical-align: middle;
+      }
+      h1 {
+        padding: 20px 0px;
+        background-color: #444444;
+        text-align: center;
+        color: #ffffff;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="jb-table">
+      <div class="jb-table-row">
+        <div class="jb-table-cell">
+          <h1>Lorem Ipsum Dolor</h1>
+        </div>
+      </div>
+    </div>
+
+    <p class="p_conts_one">파일번호: <span th:text="${obj2.fno}"></span></p>
+                    <p class="p_conts_one">파일명: <span text="dddd"></span></p>
+                    
+                    <li>
+                        <label for="STREET">Street</label>
+                        <input data-val="true" data-val-required="The Street field is required." id="STREET" name="STREET" type="text" value="P.O. Box 1053" />
+                      </li>
+                      <li>
+                        <label for="SUITE">Suite</label>
+                        <input id="SUITE" name="SUITE" type="text" value="" />
+                      </li>
+                      <li>
+                        <label for="city">City</label>
+                        <input data-val="true" data-val-required="The City field is required." id="city" name="city" type="text" value="Dalton" />
+                      </li>
+  </body>
+</html>

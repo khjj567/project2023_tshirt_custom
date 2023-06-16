@@ -658,6 +658,12 @@ public class HomeProductController {
             @ModelAttribute Orders orders,
             @RequestParam(name="mid") String mid,
             HttpServletRequest request,
+
+            @RequestParam(name = "postcode") String postcode,
+            @RequestParam(name = "address") String address,
+            @RequestParam(name = "detailadd") String detailadd,
+            @RequestParam(name = "addextra") String addextra,
+
             @RequestParam(name = "aname") String aname,
             @RequestParam(name = "aphone") String aphone,
             @RequestParam(name = "dno") long dno,
@@ -674,14 +680,15 @@ public class HomeProductController {
 
             ordersRepository.save(orders);
 
+            log.info("아이디 안오냐 => {}", mid);
             // memberAddress : ANO MID ANAME APHONE APOSTCODE AADDRESS
             Member member = mRepository.findByMid(mid);
             mAddress.setMember(member);
             mAddress.setAname(aname);
             mAddress.setAphone(aphone);
-            mAddress.setApostcode(request.getParameter("postcode"));
-            mAddress.setAaddress(request.getParameter("address") + request.getParameter("detailAddress")+request.getParameter("extraAddress"));
-            // log.info("mAddress 값 => {}", mAddress.toString());
+            mAddress.setApostcode(postcode);
+            mAddress.setAaddress(address + detailadd + addextra);
+            log.info("mAddress 값 => {}", mAddress.toString());
 		
             mAddressRepository.save(mAddress);
 

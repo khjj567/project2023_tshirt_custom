@@ -13,7 +13,7 @@
 		resize: both;
 	}
 	#mypage_btn{
-		border: solid 2px #000000;
+		border: solid 1px #000000;
 		font-size: 16px;
 		background-color: rgba(217, 217, 217, 1);
 		width: auto;
@@ -23,7 +23,13 @@
 		margin: 5px;
 		font-family: "NanumSquare";
 		
+	}	
+	#mypage_btn:hover{
+		border: solid 1px rgba(217, 217, 217, 1);
+		color: rgb(0, 0, 0);
+		background-color: pink;
 	}
+
 	.ti_ask{
 		margin: 7px;
 	}
@@ -33,11 +39,7 @@
 		border-radius: 5px;
 		text-align: left ;
 	}
-	#mypage_btn:hover{
-		border: solid 2px rgba(217, 217, 217, 1);
-		color: rgb(0, 0, 0);
-		background-color: pink;
-	}
+
 </style>
 <body>
     <div id="all">
@@ -46,21 +48,29 @@
             <div class="clear"></div>
             <div class="bar"></div>
             <div class="body">
+				<div class="mid_title">
+                    질문 수정
+                </div>
+				<div class="mypage_button" style="float: right;">
+					<a id="mypage_btn" th:href="@{/fqa.do?menu=2}">질문목록</a>
+				</div>
                 <form th:action="@{/fqa/ask1update.do?(haskno=${obj.haskno})}" method="post" id="form">
-					<div>
-						제목 : <input type="text" name="hasktitle" id="title" th:value="${obj.hasktitle}" />
+					<div style="padding-top: 15px;">
+						<label class="label_cont_ti">제목 : </label>
+						<input type="text" name="hasktitle" id="title" th:value="${obj.hasktitle}" />
 					</div>
-					<div>
-						<div class="ti_ask" style="margin-left: 30px;">
-							<textarea name="haskcontent" style="width: 700px; height: 200px;" id="content" th:text="${obj.haskcontent}" th:value="${obj.haskcontent}"></textarea>
-						</div>
-						<div class="mypage_button">
-							<input type="button" id="mypage_btn" value="저장하기" onclick="updateCheck()"/>
-							<!-- type="button" : 
-								submit이면 값이 넘어가서 event.preventDefault();로 폼제출을 막아야 하고 
-								button을 사용하면 폼제출이 id가 호출되어야 넘어가므로 event.preventDefault(); 를 사용하지 않아도 무방하다 -->
-						</div>
+					
+					<!-- <div> -->
+					<div class="ti_ask" style="margin-left: 30px;">
+						<textarea name="haskcontent" style="width: 700px; height: 200px;" id="content" th:text="${obj.haskcontent}" th:value="${obj.haskcontent}"></textarea>
 					</div>
+					<div class="mypage_button">
+						<input type="button" id="mypage_btn" value="저장하기" onclick="updateCheck()"/>
+						<!-- type="button" : 
+							submit이면 값이 넘어가서 event.preventDefault();로 폼제출을 막아야 하고 
+							button을 사용하면 폼제출이 id가 호출되어야 넘어가므로 event.preventDefault(); 를 사용하지 않아도 무방하다 -->
+					</div>
+					<!-- </div> -->
 				</form>
             </div>
         </div>

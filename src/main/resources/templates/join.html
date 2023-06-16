@@ -3,46 +3,77 @@
 <th:block th:replace="~{/fragments/homeheader :: headerFragment}"></th:block>
 
 <style>
-    /* image_p : id일때만 draggable 돼 */
-#image_p2{
-    float: left;
-    width: 100%;
-    height: auto;
-    background-color: rgba(217, 217, 217, 1);
-    
-}
-/* draggable */
-.draggable { 
-    width: auto; 
-    height: auto; 
-    float: left; 
-}
-.timage{
-    float: left;
-    width: 100%;
-    height: auto;
-    margin: auto 0px; 
-    position: relative;
-    object-fit: contain;
-    /* background-color: rgba(217, 217, 217, 1); */
-}
-.resizable {
-    width: auto;
-    height: auto;
-    /* border-radius: 0.75rem;
-    padding: 20px;
-    margin: 1rem; */
-    background-color: #29e;
-    color: white;
-    font-size: 20px;
-    font-family: sans-serif;
-    overflow: hidden;
+    .box{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 67vh;
+        /* background: plum; */
+    }
+    .login_do{
+        text-align: center;
+        /* background-color: aliceblue; */
+        padding: 50px;
+        font-weight: 900;
+    }
 
-    touch-action: none;
-
-    /* This makes things *much* easier */
-    box-sizing: border-box;
-}
+    .loginnnn{
+        font-size: 50px;
+        font-weight: bold;
+        font-family: NanumSquare;
+    }
+    .lonin_box{
+		display: flex;
+		align-items: center;
+        font-family: NanumSquare;
+        font-size: 32px;
+        font-weight: bold;
+        width: 100%;
+        height: auto;
+        margin-top: 15px;
+    }
+	input[type=number]{
+		border: solid 3px black;
+		height: 30px;
+		border-radius: 5px;
+		text-align: left ;
+		
+	}
+    input[type=text]{
+		border: solid 3px black;
+		height: 30px;
+		border-radius: 5px;
+		text-align: left ;
+		
+	}
+    input[type=password]{
+		border: solid 3px black;
+		height: 30px;
+		border-radius: 5px;
+		text-align: left ;
+	}
+    #mypage_btn{
+		border: solid 2px #000000;
+		font-size: 22px;
+		background-color: rgba(217, 217, 217, 1);
+		width: auto;
+		height: auto;
+		border-radius: 10px;
+		padding: 5px 30px 5px 30px;
+		margin: 20px 5px 5px 5px;
+		font-family: "NanumSquare";
+		
+	}	
+	#mypage_btn:hover{
+		border: solid 2px rgba(217, 217, 217, 1);
+		color: rgb(0, 0, 0);
+		background-color: pink;
+	}
+	.label_style{
+		float: left; 
+		vertical-align: middle; 
+		margin-right: 10px;
+	}
 </style>
 
 <body>
@@ -52,22 +83,44 @@
             <div class="clear"></div>
             <div class="bar"></div>
             <div class="body">
-                <div class="mid_title">
-                    회원가입
-                </div>
-                <!-- 중앙으로 이동 및 마진 -->
-                <div>                   
-                    <form th:action="@{/join.do}" method="post" id="form">
-                    <!-- name값은 항상 dto의 값과 같아야 한다는 점을 주의하자: 현재는 Member-->
-                        아이디: <input type="text" id="id" name="mid" autofocus/><br />
-                        비밀번호: <input type="text" id="pass" name="mpw" /><br />
-                        비밀번호: <input type="text" id="pass1" /><br />
-                        이메일 <input type="text" id="email" name="memail" /><br />
-                        이름: <input type="text" id="name" name="mname" /><br />
-                        전화번호 : <input type="text" id="phone" name="mphone"/><br />
-                        <input type="button" value="회원가입" onclick="joinAction()"/>
-                    </form>
-                </div> 
+
+				<div class="box">
+					<div class="login_do">
+						<label class="loginnnn">회원가입</label>
+						<!-- 중앙으로 이동 및 마진 -->
+						<div class="loginnnn" style="margin-top: 20px;">                   
+							<form th:action="@{/join.do}" method="post" id="form">
+								<div class="lonin_box" >
+									<label class="label_style">아이디  </label>
+									<input type="text" id="id" name="mid" autofocus/>
+								</div>
+								<div class="lonin_box">
+									<label class="label_style">비밀번호  </label>
+									<input type="password" id="pass" name="mpw" />
+								</div>
+								<div class="lonin_box">
+									<label class="label_style">비밀번호 확인  </label>
+									<input type="password" id="pass1"  />
+								</div>
+								<div class="lonin_box">
+									<label class="label_style">이메일  </label>
+									<input type="text" id="email" name="memail" />
+								</div>
+								<div class="lonin_box">
+									<label class="label_style">이름  </label>
+									<input type="text" id="name" name="mname" />
+								</div>
+								<div class="lonin_box">
+									<label class="label_style">전화번호  </label>
+									<input type="number" id="phone" name="mphone"/>
+								</div>
+								<div class="loginnnn" style="margin-top: 20px;">
+									<input id="mypage_btn" type="button" value="회원가입" onclick="joinAction()"/>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
             </div>
         </div>
         <div class="clear"></div>
@@ -94,11 +147,11 @@
 			id.focus();
 			return false; // 함수종료. 전송하지 않음.
 		}
-		if(idcheck === 0){ 
-			alert('사용가능한 아이디를 입력하세요');
-			id.focus();
-			return false; 
-		}
+		// if(idcheck === 0){ 
+		// 	alert('사용가능한 아이디를 입력하세요');
+		// 	id.focus();
+		// 	return false; 
+		// }
 		
 		if(pass.value.length <=0){ 
 			alert('비밀번호를 입력하세요.');
@@ -117,17 +170,17 @@
 			return false; 
 		}
 
-		
-		if(name.value.length <=0){ 
-			alert('이름을 입력하세요.');
-			name.focus();
-			return false; // 함수종료. 전송하지 않음.
-		}
 		if(email.value.length <=0){ 
 			alert('이메일을 입력하세요.');
 			age.focus();
 			return false; // 함수종료. 전송하지 않음.
 		}
+		if(name.value.length <=0){ 
+			alert('이름을 입력하세요.');
+			name.focus();
+			return false; // 함수종료. 전송하지 않음.
+		}
+		
 
 		if(phone.value.length < 11){  // 일치여부 판단
 			alert('휴대폰 번호를 올바르게 입력해 주세요');
@@ -139,31 +192,31 @@
 		document.getElementById("form").submit();
 	
 	}
-	async function ajaxIDCheck(e) {
-		console.log(e.value);
-		if (e.value.length>0){ // ID최소 한자는 되어야함
-			// rest api 호출
-			const url = '${pageContext.request.contextPath}/api/idcheck.json?id=' + e.value;
-			const headers = {"Content-Type":"application/json"};
-			const {data} = await axios.get(url, {headers}); 
-			// 결과값 받기 
-			console.log(data);
-			if(data.ret === 1){
-				idcheck = 0;
-				// 사용불가 (이미 1개 있음)
-				document.getElementById("lbl_check").innerText = '사용불가';
-			}
-			else if(data.ret === 0){
-				idcheck = 1;
-				// 사용가능
-				document.getElementById("lbl_check").innerText = '사용가능';
-			}	
-		}
-		else {
-			idcheck = 0;
-			document.getElementById("lbl_check").innerText = '아이디';
-		}
-	}    
+	// async function ajaxIDCheck(e) {
+	// 	console.log(e.value);
+	// 	if (e.value.length>0){ // ID최소 한자는 되어야함
+	// 		// rest api 호출
+	// 		const url = '${pageContext.request.contextPath}/api/idcheck.json?id=' + e.value;
+	// 		const headers = {"Content-Type":"application/json"};
+	// 		const {data} = await axios.get(url, {headers}); 
+	// 		// 결과값 받기 
+	// 		console.log(data);
+	// 		if(data.ret === 1){
+	// 			idcheck = 0;
+	// 			// 사용불가 (이미 1개 있음)
+	// 			document.getElementById("lbl_check").innerText = '사용불가';
+	// 		}
+	// 		else if(data.ret === 0){
+	// 			idcheck = 1;
+	// 			// 사용가능
+	// 			document.getElementById("lbl_check").innerText = '사용가능';
+	// 		}	
+	// 	}
+	// 	else {
+	// 		idcheck = 0;
+	// 		document.getElementById("lbl_check").innerText = '아이디';
+	// 	}
+	// }    
 	</script>
 </body>
 </html>

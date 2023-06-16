@@ -1,10 +1,31 @@
 <!DOCTYPE html>
 <html>
+    <style>
+        input[type=submit]{
+		border: solid 2px black;
+		background-color: rgba(217, 217, 217, 1);
+		height: auto;
+		width: auto;
+		padding:  5px 15px 5px 15px;
+		border-radius: 30px;
+		/* text-align: center ; */
+	}
+	input[type=submit]:hover{
+		border: solid 2px rgba(217, 217, 217, 1);
+		background-color: pink;
+		color: black;
+		border-radius: 30px;
+		padding:  5px 15px 5px 15px;
+		/* text-align: center ; */
+	}
+    </style>
     <th:block th:fragment="mypage6Fragment">
         <div class="my_title">
             주문목록
         </div>
-        <a th:href="@{/product.do}"><button>옷보러가기</button></a>
+        <div class="mypage_button" style="float: right;">
+            <a id="mypage_btn" th:href="@{/product.do}">옷보러가기</a>
+        </div>
         <table class="responstable">
             <thead>
                 <th>수령인</th>
@@ -21,7 +42,7 @@
                     <td th:text="${obj.aaddress}"></td><!-- 사이즈tsno -->
                     <form th:action="@{/member/dropmadd.do}" method="post">
                         <td>
-                            <input type="submit" value="삭제" />
+                            <input type="submit" id="mypage_btn"  value="삭제" />
                             <input type="hidden" name="ano" th:value="${obj.ano}"/>
                         </td>
                     </form>

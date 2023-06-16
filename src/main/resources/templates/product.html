@@ -2,7 +2,23 @@
 <html lang="en">
 <th:block th:replace="~{/fragments/homeheader :: headerFragment}"></th:block>
     <style>
-        
+        #mypage_btn{
+		border: solid 2px #000000;
+		font-size: 16px;
+		background-color: rgba(217, 217, 217, 1);
+		width: auto;
+		height: auto;
+		border-radius: 30px;
+		padding: 5px 15px 5px 15px;
+		margin: 5px;
+		font-family: "NanumSquare";
+		float: left;
+	}	
+	#mypage_btn:hover{
+		border: solid 2px rgba(217, 217, 217, 1);
+		color: rgb(0, 0, 0);
+		background-color: pink;
+	}
         
 
     </style>
@@ -22,15 +38,17 @@
                 <div >
                     <!-- 항목카테고리  버튼을 누르면 해당타입으로 정렬-->
                     <!-- 항목카테고리 버튼모양 변경 수정 -->
-                    <a th:href="@{/product.do(typeCode=0)}">전체목록</a>
-
+                    <!-- <a th:href="@{/product.do(typeCode=0)}">전체목록</a> -->
+                        <div class="mypage_button">
+                            <a id="mypage_btn"  th:href="@{/product.do(typeCode=0)}">전체목록</a>
+                        </div>
                     <th:block th:each="tmp, idx : ${search.typeCode}" >
                         <form th:action="@{/product.do}" method="get" th:object="${search}">
                             <input type="hidden" name="typeCode" th:value="${tmp}" />
-                            <input type="submit" id="select_btn" 
-                                style="background: transparent; 
-                                    background-color:rgba(242, 242, 242, 1); float: left;" 
+                            <div class="mypage_button">
+                                <input id="mypage_btn"  type="submit"  
                                 th:value="${search.typeName[idx.index]}" />
+                            </div>
                         </form>
                     </th:block>
                 </div>

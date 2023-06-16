@@ -1,7 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <th:block th:replace="~{/fragments/homeheader :: headerFragment}"></th:block>
+<style>
+    .box{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 67vh;
+        /* background: plum; */
+    }
+    .login_do{
+        text-align: center;
+        /* background-color: aliceblue; */
+        padding: 50px;
+        font-weight: 900;
+    }
 
+    .loginnnn{
+        font-size: 50px;
+        font-weight: bold;
+        font-family: NanumSquare;
+    }
+    .lonin_box{
+		display: flex;
+		align-items: center;
+        font-family: NanumSquare;
+        font-size: 32px;
+        font-weight: bold;
+        width: 100%;
+        height: auto;
+        margin-top: 15px;
+    }
+    input[type=text]{
+		border: solid 3px black;
+		height: 30px;
+		border-radius: 5px;
+		text-align: left ;
+	}
+    input[type=password]{
+		border: solid 3px black;
+		height: 30px;
+		border-radius: 5px;
+		text-align: left ;
+	}
+    #mypage_btn{
+		border: solid 2px #000000;
+		font-size: 22px;
+		background-color: rgba(217, 217, 217, 1);
+		width: auto;
+		height: auto;
+		border-radius: 10px;
+		padding: 5px 30px 5px 30px;
+		margin: 20px 5px 5px 5px;
+		font-family: "NanumSquare";
+		
+	}	
+	#mypage_btn:hover{
+		border: solid 2px rgba(217, 217, 217, 1);
+		color: rgb(0, 0, 0);
+		background-color: pink;
+	}
+</style>
 <body>
     <div id="all">
         <div class="all_center">
@@ -9,17 +68,31 @@
             <div class="clear"></div>
             <div class="bar"></div>
             <div class="body">
-                <div class="mid_title">
-                    로그인
-                </div>
-                <!-- 중앙으로 이동 및 마진 -->
-                <div>                   
-                    <form th:action="@{/loginaction.do}" method="post" id="form">
-                        아이디: <input type="text" name="mid" id="id" value="bbb" autofocus/><br />
-                        암호: <input type="password" name="mpw" id="pass" value="BBB"/><br />
-                        <input type="button" value="로그인" onclick="loginAction()"/>
-                    </form>
-                </div> 
+                <!-- <div id="all">
+                    <div class="all_center"> -->
+                        <div class="box">
+                            <div class="login_do">
+                                <label class="loginnnn">로그인</label>
+                                <!-- 중앙으로 이동 및 마진 -->
+                                <div class="loginnnn" style="margin-top: 20px;">                   
+                                    <form th:action="@{/loginaction.do}" method="post" id="form">
+                                        <div class="lonin_box">
+                                            <label style=" vertical-align: middle; margin-right: 10px;">아이디  </label>
+                                            <input type="text" style="vertical-align: middle;" name="mid" id="id" value="bbb" autofocus/>
+                                        </div>
+                                        <div class="lonin_box">
+                                            <label style=" float: left; vertical-align: middle; margin-right: 10px;">암호  </label>
+                                            <input type="password" style="vertical-align: middle;" name="mpw" id="pass" value="BBB" />
+                                        </div>
+                                        <div class="loginnnn" style="margin-top: 20px;">
+                                            <input id="mypage_btn" type="button" value="로그인" onclick="loginAction()"/>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    <!-- </div>
+                </div> -->
             </div>
         </div>
         <div class="clear"></div>
